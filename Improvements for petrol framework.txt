@@ -1,0 +1,13 @@
+Problems with petrol framework
+
+- nextTicket Error
+- asynchrousnous tests causing issues
+    - decrementing counter in 1 call, takes longer than other call that increments, so ending up with an erroring test
+        - mainly because its using the same component instance even though 1 is being created for eachTest (assigning it to same property - need a unique component property per test)
+    - basically can only handle 1 async call per class right now
+        - easiest way to fix this would be to do them synchrousnously right now. otherwise need to encaspulate the entire parent environment so the property is not shared
+- no way to listen for emitted events
+- this.assertEquals('The body', this.find('[name=body]').value) -> this line does not fail the test, it actually goes through
+
+Add Ons
+- would be great if it said it failed on a specific line
