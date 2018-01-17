@@ -4,18 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "petrol run"
+    "test": "mocha-webpack --webpack-config webpack.config.js --require tests/setup.js tests/**/*.spec.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "petrol": "^1.0.10",
-    "vue-test-utils": "^1.0.0-beta.9"
+    "@vue/test-utils": "^1.0.0-beta.10",
+    "cross-env": "^5.1.3",
+    "expect": "^22.1.0",
+    "jsdom": "^11.5.1",
+    "jsdom-global": "^3.0.2",
+    "laravel-mix": "^1.7.2",
+    "mocha": "^4.1.0",
+    "mocha-webpack": "^1.0.1",
+    "moxios": "^0.4.0",
+    "vue-loader": "^13.7.0",
+    "webpack": "^3.10.0"
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "moxios": "^0.4.0",
-    "vue": "^2.5.13"
+    "vue": "^2.5.13",
+    "vue-template-compiler": "^2.5.13"
   }
 }

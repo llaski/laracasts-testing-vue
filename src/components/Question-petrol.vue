@@ -1,19 +1,19 @@
 <template>
     <div>
         <div v-if="!editing">
-            <h1 v-text="question.title"></h1>
-            <div class="body">{{ question.body }}</div>
-            <button id="edit" @click="editing = true"></button>
+            <h1>{{ question.title }}</h1>
+            <p>{{ question.body }}</p>
+
+            <button id="edit" @click="editing = true">Edit</button>
         </div>
+
         <div v-if="editing">
-            <input name="title" v-model="form.title" />
+            <input type="text" name="title" v-model="form.title">
             <textarea name="body" v-model="form.body"></textarea>
 
             <button id="update" @click="update">Update</button>
             <button id="cancel" @click="cancel">Cancel</button>
         </div>
-
-        <p v-if="feedback">Your question has been updated</p>
     </div>
 </template>
 
@@ -26,28 +26,28 @@ export default {
     data() {
         return {
             question: this.dataQuestion,
-            editing: false,
             form: {
                 title: this.dataQuestion.title,
                 body: this.dataQuestion.body,
             },
-            feedback: false
+            editing: false
         }
     },
 
     methods: {
-        cancel() {
-            this.editing = false
+        update() {
+            console.log('got here')
+            axios.post('/questions/1', this.form)
+                .then((response) => {
+                    console.log(response)
+                    this.question.title = response.data.title
+                    this.question.body = response.data.body
+
+                    this.editing = false
+                })
         },
 
-        update() {
-            axios.post('questions/1', this.form)
-                .then(({ data }) => {
-                    this.question.title = data.title
-                    this.question.body = data.body
-                    this.feedback = true
-                })
-
+        cancel() {
             this.editing = false
         }
     }
